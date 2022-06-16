@@ -28,6 +28,12 @@ function App() {
       .then((r) => r.json())
       .then((pets) => setPets(pets));
   };
+
+  const handleAdoptPet = (id) => {
+    setPets(
+      pets.map((pet) => (pet.id === id ? { ...pet, isAdopted: true } : pet))
+    );
+  };
   console.log(pets);
   return (
     <div className="ui container">
@@ -43,7 +49,7 @@ function App() {
             />
           </div>
           <div className="twelve wide column">
-            <PetBrowser pets={pets} />
+            <PetBrowser pets={pets} onAdoptPet={handleAdoptPet} />
           </div>
         </div>
       </div>
