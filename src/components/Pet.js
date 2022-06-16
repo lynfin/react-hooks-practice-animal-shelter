@@ -8,6 +8,19 @@ function Pet({ pet, onAdoptPet }) {
   const handleClick = (e) => {
     onAdoptPet(id);
   };
+
+  const buttonDisplay = () => {
+    if (isAdopted) {
+      return <button className="ui primary button">Already adopted</button>;
+    } else {
+      return (
+        <button className="ui disabled button" onClick={handleClick}>
+          Adopt pet
+        </button>
+      );
+    }
+  };
+
   return (
     <div className="card" data-testid="pet">
       <div className="content">
@@ -23,17 +36,7 @@ function Pet({ pet, onAdoptPet }) {
           <p>Weight: {weight}</p>
         </div>
       </div>
-      <div className="extra content">
-        <button className={isAdopted ? enabledClass : disabledClass}>
-          Already adopted
-        </button>
-        <button
-          className={isAdopted ? disabledClass : enabledClass}
-          onClick={handleClick}
-        >
-          Adopt pet
-        </button>
-      </div>
+      <div className="extra content">{buttonDisplay()}</div>
     </div>
   );
 }
