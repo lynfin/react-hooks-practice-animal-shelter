@@ -10,14 +10,25 @@ function App() {
   //  └ PetBrowser
   //      └ Pet
   const [pets, setPets] = useState([]);
-  const [filters, setFilters] = useState({ type: "all" });
+  const [filters, setFilters] = useState("all");
 
   const handleChangeType = (newFilter) => {
     setFilters(newFilter);
   };
 
-  const handleFindPetsClick = () => {};
+  const handleFindPetsClick = () => {
+    let fetchString;
+    if (filters === "all") {
+      fetchString = "http://localhost:3001/pets";
+    } else {
+      fetchString = `http://localhost:3001/pets/?type=${filters}`;
+    }
 
+    fetch(fetchString)
+      .then((r) => r.json())
+      .then((pets) => setPets(pets));
+  };
+  console.log(pets);
   return (
     <div className="ui container">
       <header>
@@ -32,7 +43,7 @@ function App() {
             />
           </div>
           <div className="twelve wide column">
-            <PetBrowser />
+            <PetBrowser pets={pets} />
           </div>
         </div>
       </div>
