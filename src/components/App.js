@@ -2,10 +2,21 @@ import React, { useState } from "react";
 
 import Filters from "./Filters";
 import PetBrowser from "./PetBrowser";
-
+//
 function App() {
+  // ┌ └ ─ ├ │
+  // App
+  //  ├ Filters
+  //  └ PetBrowser
+  //      └ Pet
   const [pets, setPets] = useState([]);
   const [filters, setFilters] = useState({ type: "all" });
+
+  const handleChangeType = (newFilter) => {
+    setFilters(newFilter);
+  };
+
+  const handleFindPetsClick = () => {};
 
   return (
     <div className="ui container">
@@ -15,7 +26,10 @@ function App() {
       <div className="ui container">
         <div className="ui grid">
           <div className="four wide column">
-            <Filters />
+            <Filters
+              onChangeType={handleChangeType}
+              onFindPetsClick={handleFindPetsClick}
+            />
           </div>
           <div className="twelve wide column">
             <PetBrowser />
