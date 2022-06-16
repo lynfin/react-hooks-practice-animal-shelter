@@ -12,7 +12,7 @@ function Pet({ pet, onAdoptPet }) {
     <div className="card" data-testid="pet">
       <div className="content">
         <span className="header">
-          {/*'♀' OR '♂' */}
+          {gender === "female" ? " ♀ " : " ♂ "}
           {name}
         </span>
         <div className="meta">

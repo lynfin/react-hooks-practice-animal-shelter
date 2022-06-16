@@ -34,7 +34,7 @@ function App() {
       pets.map((pet) => (pet.id === id ? { ...pet, isAdopted: true } : pet))
     );
   };
-  console.log(pets);
+
   return (
     <div className="ui container">
       <header>
